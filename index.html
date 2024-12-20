@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hi soleil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .border {
+            background-image: radial-gradient(circle at 15px 0, #360031 2px, #fba5ec 20px, rgba(255,255,255,0) 21px);
+            background-repeat: repeat-x;
+            background-position: 0 0;
+            background-size: 30px 21px;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ff7398; /* Light pink background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #textBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #ffd6e4; /* Dark pink text box */
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #yesButton {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="border">
+    <div id="textBox">
+        <p id="modalText">Do you like me?</p>
+        <button class="btn btn-success" id="yesButton" onclick="showModal('yesModal')">Yes</button>
+        <button class="btn btn-danger" onclick="handleNoClick()">No</button>
+    </div>
+
+    <!-- Bootstrap Modal for Yes -->
+    <div class="modal fade" id="yesModal" tabindex="-1" aria-labelledby="yesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gifModalLabel">YeeaeahhhH!!!!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>i like me too</p>
+                    <p>u didnt try and click no did you</p>
+                    <button class="btn btn-primary" onclick="showText()">o_o</button>
+                    <div id="container2" style="display: none;">
+                        <p>(ur my favorite)</p>
+                        <p>!!! Merry Christmas !!!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Array of modal texts to rotate through
+        const modalTexts = [
+            "Do you like me?",
+            "Are you sure? Think about it again.",
+            "No but are you really sure?? answer again",
+            "nuh uh",
+            "uno reverse",
+            "ah shit you know ah its opposite day did you know that haha do you like me btw",
+            "do you not not not not not not like me",
+            "no but like think about it again do you like me",
+            "are you really really sure?",
+            "ahaha got you psych haha do you like me though",
+            "like really sure"
+        ];
+
+        let textIndex = 0; // Initial index for rotating modal text
+
+        // Function to show modal
+        function showModal(modalId) {
+            var myModal = new bootstrap.Modal(document.getElementById(modalId));
+            myModal.show();
+        }
+
+        // Function to show the GIF
+        function showText() {
+            document.getElementById('container2').style.display = 'block';
+        }
+
+        // Handle No button click: grow "Yes" button and rotate text
+        function handleNoClick() {
+            // Increase the size of the "Yes" button
+            let yesButton = document.getElementById('yesButton');
+            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize * 1.5) + 'px'; // Increase font size by 200%
+
+            // Rotate modal text
+            textIndex = (textIndex + 1) % modalTexts.length; // Cycle through text array
+            document.getElementById('modalText').textContent = modalTexts[textIndex];
+        }
+    </script>
+</body>
+</html>
